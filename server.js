@@ -7,7 +7,7 @@ const app = express();
 
 app.get('/', (req, res) => {
     res.send({
-        message: 'welcome'
+        message: 'welcome to E-Commerce app'
     })
 })
 
