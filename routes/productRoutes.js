@@ -24,8 +24,8 @@ router.delete("/delete-product/:pid", deleteProductController);
 
 //update products
 router.put(
-    "/update-product'/:pid", 
-    formidable(),
+    "/update-product/:pid", 
+    //formidable(),
     updateProductController);
 
 
