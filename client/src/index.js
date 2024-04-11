@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import CreateCategory from './CreateCategory.js';
+import Products from './Products.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +16,7 @@ root.render(
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/create-category' element={<CreateCategory />} />
+        <Route path='/products' element = {<Products/>}/>
       </Routes>
     </BrowserRouter>
   </>
