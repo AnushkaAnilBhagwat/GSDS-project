@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
-import Header from './Header';
-import Categories from './Categories';
-import Footer from './Footer';
+import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import CreateCategory from './CreateCategory.js';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <Header></Header>,
-    <div className='container' style = {{minHeight: '80vh'}}>
-      <Categories/>
-    </div>,
-    <Footer />
-
+    
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='/create-category' element={<CreateCategory />} />
+      </Routes>
+    </BrowserRouter>
   </>
 );
 
-
+// display existing categories with photo

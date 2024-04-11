@@ -10,12 +10,19 @@ dotenv.config()
 connectDB();
 
 const app = express();
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', '*');
+    res.header('Access-Control-Allow-Headers', '*')
+    next();
+});
 
 app.use(express.json())
 app.use(morgan('dev'))
 
 app.use("/category", categoryRoutes);
 app.use("/products", productRoutes);
+
 
 app.get('/', (req, res) => {
     res.send({
