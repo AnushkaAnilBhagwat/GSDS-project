@@ -87,3 +87,13 @@ code {
   align-items: center;
   font-family: "Libre Baskerville", serif;
 }
+
+.form-container {
+  width: 400px;
+  background-color: #88171e;
+  margin: 200px auto;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  overflow: hidden;
+}
