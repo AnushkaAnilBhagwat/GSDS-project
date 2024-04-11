@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-
-const Products = () => {
+const CategorisedProducts = () => {
     const key = 1;
     const navigate = useNavigate();
     const params = useParams();
@@ -25,11 +24,12 @@ const Products = () => {
     }, []);
 
     //get all products
-    const getAllProducts = async () => {
+    const getProductsByCategory = async () => {
         try {
             const { data } = await axios.get(
-                "http://localhost:8080/products/get-product"
+                `http://localhost:8080/products/get-product-by-category/${params._id}`
             );
+            console.log(data);
             setProducts(data.products);
         } catch (error) {
             console.log(error);
@@ -38,7 +38,7 @@ const Products = () => {
     };
 
     useEffect(() => {
-        getAllProducts();
+        getProductsByCategory();
     }, []);
 
     const handleDelete = async () => {
@@ -75,12 +75,12 @@ const Products = () => {
                             alt="logo"
                         />
                     </div>
-                    
+
                 </Link>
-                
+
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Products;
+export default CategorisedProducts;

@@ -224,3 +224,24 @@ export const updateProductController = async (req, res) => {
   }
 };
 
+export const getProductByCategoryController = async (req, res) => {
+  try {
+    const product = await productModel
+      .find({ category: req.params.id })
+      .select("-photo")
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Single Product Fetched",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Eror while getting category wise products",
+      error,
+    });
+  }
+};
+

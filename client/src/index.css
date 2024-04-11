@@ -8,7 +8,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
   background: linear-gradient(to right,
       rgb(255, 120, 142) 0%,
       rgb(255, 120, 142) 50%,
@@ -26,6 +25,7 @@ code {
   justify-content: space-between;
   align-items: center;
 }
+
 
 .logo {
   margin-left: 40px;
@@ -96,4 +96,36 @@ code {
   color: white;
   border-radius: 20px;
   overflow: hidden;
+}
+
+.product-list{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 90vw
+}
+
+.grid-item {
+  background-color: rgba(244, 141, 158, 0.816);
+  border: 2px solid #88171e;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.card-img-top{
+  max-width: 100px;
+  max-height: 130px;
+}
+
+.grid-plus{
+  min-height: 200px;
+  text-align: center;
+}
+
+.product-plus{
+  margin-top: 70px;
+  max-height: 60px;
+  max-width: 60px;
 }
