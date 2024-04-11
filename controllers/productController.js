@@ -127,12 +127,13 @@ export const deleteProductController = async (req, res) => {
 };
 
 //upate product
+/*
 export const updateProductController = async (req, res) => {
   try {
     const { name, description, price, category, quantity, shipping } =
       req.fields;
     const { photo } = req.files;
-    //alidation
+    
     switch (true) {
       case !name:
         return res.status(500).send({ error: "Name is Required" });
@@ -171,6 +172,54 @@ export const updateProductController = async (req, res) => {
       success: false,
       error,
       message: "Error in Update product",
+    });
+  }
+};
+*/
+
+export const updateProductController = async (req, res) => {
+  try {
+    const { name, description, price, category, quantity} = req.fields;
+    const { photo } = req.files;
+
+    // Check for required fields
+    if (!name || !description || !price || !category || !quantity) {
+      return res.status(400).send({ error: "All fields are required" });
+    }
+
+    // Check photo size
+    if (photo && photo.size > 1000000) {
+      return res.status(400).send({ error: "Photo should be less than 1MB" });
+    }
+
+    // Update the product
+    let updatedProduct = await productModel.findByIdAndUpdate(
+      req.params.pid,
+      { ...req.fields, slug: slugify(name) },
+      { new: true }
+    );
+
+    // Update photo if it exists
+    if (photo) {
+      updatedProduct.photo.data = await fs.promises.readFile(photo.path);
+      updatedProduct.photo.contentType = photo.type;
+    }
+
+    // Save the updated product
+    await updatedProduct.save();
+
+    // Send success response
+    res.status(200).send({
+      success: true,
+      message: "Product Updated Successfully",
+      updatedProduct,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in updating product",
+      error: error.message, // More descriptive error message
     });
   }
 };
